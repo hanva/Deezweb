@@ -2,15 +2,18 @@
   <div>
     <div class="grey-block flex-column">
       <h1>Bienvenue sur DeezWeb</h1>
-      <p>L'application qui permet facilemen d'écouter de la musique .</p>
+      <p>L'application qui permet facilement d'écouter de la musique .</p>
     </div>
-    <MusicCard :track="track" v-if="track"/>
-
-    <div class="actions">
-      <a href="#" class="btn" @click="changeTrack">
-        <i class="fa fa-random"/>Changer de chanson
-      </a>
+    <h2>Une de vos musiques favorites au hasard</h2>
+    <div v-if="track">
+      <MusicCard :track="track" v-bind:key="track.id"/>
+      <div class="actions">
+        <a href="#" class="btn" @click="changeTrack">
+          <i class="fa fa-random"/>Changer de chanson
+        </a>
+      </div>
     </div>
+    <h3 v-else>Pas de favoris</h3>
   </div>
 </template>
 
@@ -36,7 +39,6 @@ export default {
   created() {
     var favs = JSON.parse(localStorage.getItem("musicFav"));
     favs.forEach(id => {
-      console.log(id);
       var track = JSON.parse(localStorage.getItem(id));
       this.tracks.push(track);
     });
@@ -59,10 +61,10 @@ export default {
   width: 80vw;
   padding: 20px;
   text-align: left;
-  margin: auto;
+  margin: 20px auto;
   height: 200px;
   align-items: center;
-  background: rgb(224, 220, 220);
+  background: lightgray;
 }
 h3 {
   margin: 40px 0 0;

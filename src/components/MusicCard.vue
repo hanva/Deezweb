@@ -1,9 +1,9 @@
 <template>
-  <div class="card flex-column bordered">
-    <div class="flex-row">
+  <div class="card flex-column">
+    <div class="content flex-row">
       <img :src="track.album.cover_small">
-      <div class="flex-column">
-        <h4>{{track.title}}</h4>
+      <div class="flex-column text-left">
+        <h3>{{track.title}}</h3>
         <p>{{track.artist.name}}</p>
       </div>
     </div>
@@ -19,7 +19,7 @@ export default {
   data() {
     return {
       Fav: false,
-      favText: "Ajouter aux Favoris"
+      favText: " Ajouter aux Favoris"
     };
   },
   created() {
@@ -46,7 +46,7 @@ export default {
         this.Fav = true;
         localStorage.setItem(this.track.id, JSON.stringify(this.track));
         favs.push(this.track.id);
-        this.favText = "Retirer des Favoris";
+        this.favText = " Retirer des Favoris";
       }
       localStorage.setItem("musicFav", JSON.stringify(favs));
     }
@@ -54,10 +54,9 @@ export default {
   computed: {
     isFav: function() {
       if (this.Fav == true) {
-        console.log(this.Fav);
-        return "btn-unfav";
+        return "btn btn-unfav";
       } else {
-        return "btn-fav";
+        return " btn btn-fav";
       }
     }
   }
@@ -66,8 +65,42 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.text-left {
+  text-align: left;
+}
+audio {
+  margin: 10px 0;
+}
+img {
+  margin: 0 10px 10px 10px;
+}
+.btn {
+  max-width: 200px;
+  padding: 10px 20px;
+
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  border: 1px solid red;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 .card {
   max-width: 400px;
+  padding: 10px;
+  box-shadow: 1px 1px 12px #555;
   margin: auto;
 }
 .btn-fav {
@@ -91,9 +124,6 @@ export default {
 .flex-row {
   display: flex;
   flex-direction: row;
-}
-h3 {
-  margin: 40px 0 0;
 }
 ul {
   list-style-type: none;

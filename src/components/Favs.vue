@@ -1,9 +1,10 @@
 <template>
   <div class="container centered">
-    <div class="userlist" v-if="musics !== null">
+    <div v-if="this.musics.length>0" class="userlist">
       <!-- Liste de tous les musics ici -->
       <MusicCard v-for="track in musics" :track="track" :key="track.id"/>
     </div>
+    <h2 v-else>Vous n'avez pas de favoris</h2>
   </div>
 </template>
 
